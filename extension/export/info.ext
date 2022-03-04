@@ -1,0 +1,4 @@
+name: 导出
+type: python
+description: readme.md
+executable: export.pyw

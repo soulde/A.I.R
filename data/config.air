@@ -1,0 +1,13 @@
+database:
+  type: sqlite3
+  url: ./data/AIR.db
+
+extensionDir: ./extension
+
+executableDir:
+  python: ./scripts/py
+  exe: ./bin
+
+interpreter:
+  python: ./bin/python/pythonw.exe
+  exe: ""

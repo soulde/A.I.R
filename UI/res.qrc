@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/zoom.png</file>
+        <file>icons/close.png</file>
+        <file>imgs/login_background.png</file>
+        <file>imgs/MainWindow.png</file>
+        <file>icons/icon_air.png</file>
+        <file>icons/tools_icon.png</file>
+        <file>icons/logo_icon.png</file>
+        <file>imgs/robot.png</file>
+        <file>icons/zoom_out.png</file>
+        <file>icons/refresh.png</file>
+    </qresource>
+</RCC>
