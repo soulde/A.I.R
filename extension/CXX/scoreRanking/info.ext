@@ -1,0 +1,4 @@
+name: 积分排名
+type: exe
+description: readme.md
+executable: scoreRanking.exe
