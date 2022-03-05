@@ -2,8 +2,8 @@
 // Created by lyjly on 2022/2/13.
 //
 
-#ifndef AIR_EXTMANAGER_H
-#define AIR_EXTMANAGER_H
+#ifndef ACPS_EXTMANAGER_H
+#define ACPS_EXTMANAGER_H
 
 #include <iostream>
 #include <dirent.h>
@@ -47,4 +47,4 @@ private:
 };
 
 
-#endif //AIR_EXTMANAGER_H
+#endif //ACPS_EXTMANAGER_H

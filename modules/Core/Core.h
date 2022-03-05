@@ -2,8 +2,8 @@
 // Created by lyjly on 2022/2/7.
 //
 
-#ifndef AIR_CORE_H
-#define AIR_CORE_H
+#ifndef ACPS_CORE_H
+#define ACPS_CORE_H
 
 #include <QObject>
 #include <QMutex>
@@ -101,4 +101,4 @@ private:
 };
 
 
-#endif //AIR_CORE_H
+#endif //ACPS_CORE_H

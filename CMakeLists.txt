@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(AIR)
+project(ACPS)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
@@ -42,7 +42,7 @@ endforeach (MOD)
 #TODO:SDK Develop
 #add_subdirectory(SDK/CXX/extension)
 
-file(GLOB EXT_LIST ${CMAKE_CURRENT_SOURCE_DIR}/extension/*)
+file(GLOB EXT_LIST ${CMAKE_CURRENT_SOURCE_DIR}/extension/CXX/*)
 
 foreach (EXT ${EXT_LIST})
     message(${EXT})
@@ -63,6 +63,7 @@ add_executable(${PROJECT_NAME} WIN32
         app/Main/Application.cpp
         ${UI_LIST}
         )
+add_executable(initEnv WIN32 app/init.cpp)
 
 if (WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND}
@@ -72,3 +73,6 @@ endif ()
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED} ${MODULES})
 
+add_executable(extManagerTest test/extManagerTest.cpp)
+
+target_link_libraries(extManagerTest ExtManager)

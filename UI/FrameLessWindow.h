@@ -2,8 +2,8 @@
 // Created by lyjly on 2022/2/26.
 //
 
-#ifndef AIR_FRAMELESSWINDOW_H
-#define AIR_FRAMELESSWINDOW_H
+#ifndef ACPS_FRAMELESSWINDOW_H
+#define ACPS_FRAMELESSWINDOW_H
 
 
 #include <QMainWindow>
@@ -25,4 +25,4 @@ protected:
 };
 
 
-#endif //AIR_FRAMELESSWINDOW_H
+#endif //ACPS_FRAMELESSWINDOW_H

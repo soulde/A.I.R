@@ -15,7 +15,7 @@ ExtManager::ExtManager(std::string extensionDir) {
     searchDir(root, dirs);
     for (const auto &dir :dirs) {
         try {
-            YAML::Node node = YAML::LoadFile(root + "/" + dir + "/info.ext");
+            YAML::Node node = YAML::LoadFile(dir + "/info.ext");
             std::string name = node["name"].as<std::string>();
             if (name.empty()) {
                 continue;
@@ -23,7 +23,7 @@ ExtManager::ExtManager(std::string extensionDir) {
 
             apps[name] = dir;
         } catch (YAML::BadFile &e) {
-            continue;
+//            continue;
         }
     }
 }
@@ -62,15 +62,19 @@ void ExtManager::searchDir(const std::string &path, std::vector<std::string> &di
             && strcmp(data.name, ".") != 0
             && strcmp(data.name, "..") != 0
                 ) {
+            std::string tmp = path + "/" + std::string(data.name);
+            searchDir(tmp, dirs);
+        }
 
-            dirs.emplace_back(data.name);
+        if (std::string(data.name) == "info.ext") {
+            dirs.emplace_back(path);
         }
     } while (_findnext(ret, &data) == 0);
 }
 
 std::string ExtManager::getDescription(const std::string &name) {
     std::string dir = apps[name];
-    YAML::Node node = YAML::LoadFile(root + "/" + dir + "/info.ext");
+    YAML::Node node = YAML::LoadFile(dir + "/info.ext");
     if (node.IsNull()) {
         return std::string("");
     }
@@ -81,7 +85,7 @@ std::string ExtManager::getDescription(const std::string &name) {
         des = "";
     }
 
-    std::string tmp = PathManager::relatedPath2Absolute(root + "/" + dir + "/", des);
+    std::string tmp = PathManager::relatedPath2Absolute(dir + "/", des);
     return tmp;
 }
 
@@ -91,13 +95,13 @@ void ExtManager::getAppList(std::vector<std::string> &appList) {
     }
 }
 
-void ExtManager::run(const std::string &name, const std::string &ID, std::string& errMsg) {
+void ExtManager::run(const std::string &name, const std::string &ID, std::string &errMsg) {
     auto dirIter = apps.find(name);
     if (apps.end() == dirIter) {
         return;
     }
     std::string dir = apps[name];
-    YAML::Node node = YAML::LoadFile(root + "/" + dir + "/info.ext");
+    YAML::Node node = YAML::LoadFile(dir + "/info.ext");
     std::string app, type, url;
     try {
         app = node["executable"].as<std::string>();
@@ -129,7 +133,7 @@ void ExtManager::run(const std::string &name, const std::string &ID, std::string
         GetExitCodeProcess(pi.hProcess, &returnCode);
 
     } else {
-      errMsg = url;
+        errMsg = url;
     }
     CloseHandle(pi.hThread);
     CloseHandle(pi.hProcess);
