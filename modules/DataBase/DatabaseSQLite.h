@@ -35,7 +35,7 @@ public:
 
     int modifyValue(std::string tableName, std::string primaryKey, std::string columnName) override;
 
-    std::string excuteCmd(std::string cmd) override;
+    std::string executeCmd(std::string cmd) override;
 
 private:
     int inline open() override;

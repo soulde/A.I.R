@@ -60,7 +60,7 @@ void MainWindow::addItemSlot() {
 }
 
 void MainWindow::insertSlot(const QString &cmd) {
-    db.excuteCmd(cmd.toStdString());
+    db.executeCmd(cmd.toStdString());
     updateTable();
 }
 
@@ -81,7 +81,7 @@ void MainWindow::updateItem(QTableWidgetItem *Item) {
                 "update names set " + header->text().toStdString() + "='" + Item->text().toStdString() + "' where ID = '" +
                 ID + "'";
         QMessageBox::information(this, "", QString(upStr.c_str()));
-        db.excuteCmd(upStr);
+        db.executeCmd(upStr);
     }
 }
 
@@ -89,7 +89,7 @@ void MainWindow::deleteSlot() {
     QTableWidgetItem *temp = ui->nameTableWidget->item(ui->nameTableWidget->currentRow(), 0);
     if(!temp->text().isEmpty()){
         std::string delStr = "delete from names where ID = '" + temp->text().toStdString() + "'";
-        db.excuteCmd(delStr);
+        db.executeCmd(delStr);
     }
 
     updateTable();

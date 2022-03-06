@@ -82,7 +82,7 @@ void MainWindow::addScore(const QString &ID, const QString &Des, double score) {
             std::to_string(score) + ",'" +
             Des.toStdString() + "','" + userID.toStdString() + "','" + date + "')";
 
-    db.excuteCmd(addScoreCmd);
+    db.executeCmd(addScoreCmd);
     auto *IDItem = new QTableWidgetItem(ID);
     auto *scoreItem = new QTableWidgetItem(QString(std::to_string(score).c_str()));
 
@@ -96,7 +96,7 @@ void MainWindow::delRecord() {
     QTableWidgetItem *temp = ui->nameTableWidget->item(ui->nameTableWidget->currentRow(), 0);
     if (!temp->text().isEmpty()) {
         std::string delStr = "delete from [score record] where ID = '" + temp->text().toStdString() + "'";
-        db.excuteCmd(delStr);
+        db.executeCmd(delStr);
     }
 
     ui->nameTableWidget->removeRow(ui->nameTableWidget->currentRow());

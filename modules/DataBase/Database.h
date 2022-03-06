@@ -36,7 +36,7 @@ protected:
 
     virtual int modifyValue(std::string tableName, std::string primaryKey, std::string columnName) = 0;
 
-    virtual std::string excuteCmd(std::string cmd) = 0;
+    virtual std::string executeCmd(std::string cmd) = 0;
 };
 
 

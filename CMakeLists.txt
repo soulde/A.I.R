@@ -10,11 +10,13 @@ set(QT_VERSION 5)
 set(CMAKE_PREFIX_PATH E:/QT/5.15.2/mingw81_64)
 set(REQUIRED_LIBS Core Gui Widgets)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
+
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+
+
 
 if (CMAKE_BUILD_TYPE STREQUAL Release)
-
+    set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
     ADD_DEFINITIONS(-DNDEBUG)
 
 endif ()
@@ -63,7 +65,9 @@ add_executable(${PROJECT_NAME} WIN32
         app/Main/Application.cpp
         ${UI_LIST}
         )
+
 add_executable(initEnv WIN32 app/init.cpp)
+target_link_libraries(initEnv Database yaml-cpp sqlite3)
 
 if (WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND}

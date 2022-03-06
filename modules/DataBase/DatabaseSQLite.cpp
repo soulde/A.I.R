@@ -45,7 +45,7 @@ int DatabaseSQLite::modifyValue(std::string tableName, std::string primaryKey, s
     return 0;
 }
 
-std::string DatabaseSQLite::excuteCmd(std::string cmd) {
+std::string DatabaseSQLite::executeCmd(std::string cmd) {
     int rc = open();
     char* err;
     if (rc != SQLITE_OK) {
