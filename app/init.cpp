@@ -15,7 +15,7 @@ void initConfig(std::string path) {
         config["database"]["type"] = "sqlite3";
         config["database"]["url"] = "./data/AIR.db";
 
-        config["extension"] = "./extension";
+        config["extensionDir"] = "./extension";
 
         config["executableDir"]["python"] = "./scripts/python";
         config["executableDir"]["exe"] = "./bin";
@@ -28,13 +28,13 @@ void initConfig(std::string path) {
     }
 }
 
-void initDatabase(std::string dbName) {
+void initDatabase(const std::string& dbName) {
     DatabaseSQLite db("../data/" + dbName);
     Query q;
     q.prepareCmd("SELECT name FROM sqlite_master WHERE name='table_name'", db);
     q.read();
     std::string str = q.getData<std::string>(0);
-    if (str == "") {
+    if (str.empty()) {
         db.executeCmd(
                 "CREATE TABLE names ("
                 "ID         STRING PRIMARY KEY NOT NULL,"
@@ -54,17 +54,13 @@ void initDatabase(std::string dbName) {
                 "Tips     STRING,Operator STRING NOT NULL,"
                 "Time     DATE   NOT NULL)"
         );
-        db.executeCmd("insert into names (ID, Name, Password) values ('0','AIR', 'alliance')");
+        db.executeCmd("insert into names (ID, Name, Password) values ('_0','AIR', 'alliance')");
     }
 }
 
 int main(int argc, char **argv) {
     std::string configPath;
-//    if (argc == 2) {
-//        configPath = std::string(argv[1]);
-//    } else {
-//        return -1;
-//    }
+
     configPath= "../data/config.air";
     initConfig(configPath);
     initDatabase("AIR.db");

@@ -1,0 +1,4 @@
+name: 导入
+type: python
+description: readme.md
+executable: import.pyw

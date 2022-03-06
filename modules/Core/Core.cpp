@@ -61,13 +61,8 @@ void Core::configInit(const std::string &configPath) {
     try {
         config = YAML::LoadFile(configPath);
     } catch (YAML::BadFile &e) {
-        std::ofstream fout(configPath);
-        //TODO run init program
-        config["database"]["type"] = "sqlite3";
-        config["database"]["url"] = "../data/AIR.db";
-        config["extension"] = "../extension";
-        fout << config << std::endl;
-        fout.close();
+       emit messageSignal("找不到配置文件");
+//        exit(0);
     }
 
     char *str;
