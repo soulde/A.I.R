@@ -1,5 +1,5 @@
 from ui_export_window import Ui_MainWindow
-from PyQt5.Qt import QMainWindow, Qt, QFileDialog, QAbstractTableModel, QMessageBox
+from PyQt5.Qt import Qt, QFileDialog, QMessageBox, QApplication
 
 from FrameLessWindow import FrameLessWindow
 from DataBaseSqlite.DataBaseSqlite import DataBaseSqlite as DB
@@ -15,6 +15,7 @@ class MainWindow(FrameLessWindow):
         self.ui.setupUi(self)
         self.ui.selectPathButton.clicked.connect(self.find_path)
         self.ui.exporButton.clicked.connect(self.export_data)
+        self.db_url = QApplication.arguments()[2]
 
     def find_path(self):
         path = QFileDialog.getExistingDirectory(self, "选择导出位置", "C://")
@@ -61,7 +62,7 @@ class MainWindow(FrameLessWindow):
     def export_data(self):
         table_list = ['记录表', '成员表', '总表']
 
-        with DB('E:\Documents\project\AIR\data\AIR.db') as db:
+        with DB(self.db_url) as db:
             sql = self.analyse_filter(self.ui.tabWidget.currentIndex())
             df = pd.DataFrame()
             try:

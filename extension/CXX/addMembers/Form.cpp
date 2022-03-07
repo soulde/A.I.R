@@ -45,7 +45,6 @@ void Form::addConfirm() {
 
     int index = ui->techGroupComboBox->currentIndex()*100 + ui->adminGroupComboBox->currentIndex()*10 + ui->adminComboBox->currentIndex();
 
-
     std::string insertCmd =
             "insert into names values('" + ID + "','" + Name + "','" + PassWord + "','" + Tel + "','" + Mail + "','" +
             Sex + "'," + std::to_string(index) + ")";

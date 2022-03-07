@@ -8,7 +8,7 @@ from UI.import_window import MainWindow
 def main():
     myapp = QApplication(sys.argv)
 
-    window = MainWindow("Lyj")
+    window = MainWindow()
     window.show()
     sys.exit(myapp.exec_())
 

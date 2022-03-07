@@ -24,8 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->delPushButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
     connect(ui->nameTableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem * )),
             this, SLOT(collectItem(QTableWidgetItem * )));
-    connect(ui->nameTableWidget, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(refreshClickState()));
-    connect(ui->nameTableWidget, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(updateItem(QTableWidgetItem *)));
+    connect(ui->nameTableWidget, SIGNAL(itemClicked(QTableWidgetItem * )), this, SLOT(refreshClickState()));
+    connect(ui->nameTableWidget, SIGNAL(itemChanged(QTableWidgetItem * )), this, SLOT(updateItem(QTableWidgetItem * )));
 }
 
 void MainWindow::updateTable() {
@@ -46,7 +46,7 @@ void MainWindow::updateTable() {
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            item = new QTableWidgetItem(QString(pT[(i + 1) * cols + j]));
+            item = new QTableWidgetItem(QString(pT[(i + 1) * cols + j] + (j == 0 ? 1 : 0)));
             ui->nameTableWidget->setItem(i, j, item);
 
         }
@@ -75,10 +75,11 @@ void MainWindow::refreshClickState() {
 }
 
 void MainWindow::updateItem(QTableWidgetItem *Item) {
-    if(dClicked){
+    if (dClicked) {
         QTableWidgetItem *header = ui->nameTableWidget->horizontalHeaderItem(Item->column());
         std::string upStr =
-                "update names set " + header->text().toStdString() + "='" + Item->text().toStdString() + "' where ID = '" +
+                "update names set " + header->text().toStdString() + "='" + Item->text().toStdString() +
+                "' where ID = '" +
                 ID + "'";
         QMessageBox::information(this, "", QString(upStr.c_str()));
         db.executeCmd(upStr);
@@ -87,7 +88,7 @@ void MainWindow::updateItem(QTableWidgetItem *Item) {
 
 void MainWindow::deleteSlot() {
     QTableWidgetItem *temp = ui->nameTableWidget->item(ui->nameTableWidget->currentRow(), 0);
-    if(!temp->text().isEmpty()){
+    if (!temp->text().isEmpty()) {
         std::string delStr = "delete from names where ID = '" + temp->text().toStdString() + "'";
         db.executeCmd(delStr);
     }

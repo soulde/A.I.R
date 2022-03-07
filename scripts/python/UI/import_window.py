@@ -1,7 +1,7 @@
 import time
 
 from ui_import_window import Ui_MainWindow
-from PyQt5.Qt import QFileDialog, QMessageBox
+from PyQt5.Qt import QFileDialog, QMessageBox, QApplication
 
 import pandas as pd
 from FrameLessWindow import FrameLessWindow
@@ -9,15 +9,15 @@ from DataBaseSqlite.DataBaseSqlite import DataBaseSqlite as DB
 
 
 class MainWindow(FrameLessWindow):
-    def __init__(self, user_id, parent=None):
+    def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
         self.ui.selectPathButton.clicked.connect(self.find_path)
         self.ui.confirmButton.clicked.connect(self.data_import)
-        self.id = user_id
-        self.db_url = 'E:\Documents\project\AIR\data\AIR.db'
+        self.id = QApplication.arguments()[1]
+        self.db_url = QApplication.arguments()[2]
 
     def find_path(self):
         path = QFileDialog.getOpenFileName(self, "选择导入的表格", "C://")[0]

@@ -78,7 +78,7 @@ void MainWindow::addScore(const QString &ID, const QString &Des, double score) {
     int index = getIndex() + 1;
 
     std::string addScoreCmd =
-            "insert into [score record] values(" + std::to_string(index) + ",'" + ID.toStdString() + "'," +
+            "insert into [score record] values(" + std::to_string(index) + ",'_" + ID.toStdString() + "'," +
             std::to_string(score) + ",'" +
             Des.toStdString() + "','" + userID.toStdString() + "','" + date + "')";
 
