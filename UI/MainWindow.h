@@ -31,6 +31,8 @@ signals:
 
     void runAppSignal(const QString& name);
 
+    void tabChangeSignal();
+
 public slots:
 
     void userSetWindow(const QString& ID, const QString& name, bool isAdmin);
@@ -47,9 +49,14 @@ public slots:
 
     void messageSlot(const QString& message);
 
+
 private slots:
 
     void zoomInAndOut();
+
+    inline void sendTabChangeSignal(){
+        emit tabChangeSignal();
+    }
 
     inline void sendRollbackSignal(){
         emit rollbackSignal();

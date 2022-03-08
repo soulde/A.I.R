@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem * )), SLOT(listWidgetUpdate(QListWidgetItem * )));
     connect(ui->runAppButton, SIGNAL(clicked()), SLOT(sendRunAppSignal()));
     connect(ui->searchLineEdit, SIGNAL(textChanged(const QString &)), SLOT(searchSlot(const QString &)));
-
+    connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(sendTabChangeSignal()));
 }
 
 MainWindow::~MainWindow() {

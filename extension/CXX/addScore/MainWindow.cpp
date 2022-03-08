@@ -31,7 +31,7 @@ void MainWindow::addScoreSlot() {
     q.prepareCmd("select ID from names", db);
     while (q.read()) {
         auto item = q.getData<std::string>(0);
-        list.push_back(QString(item.c_str()));
+        list.push_back(QString(item.substr(1).c_str()));
     }
     pForm = new Form();
     pForm->show();

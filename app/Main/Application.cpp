@@ -56,6 +56,7 @@ void Application::alternate(int type) {
                              SLOT(sendAppDescription(const QString&)));
             QObject::connect(pWindow, SIGNAL(runAppSignal(const QString&)), core, SLOT(runApp(const QString&)));
             QObject::connect(core, SIGNAL(messageSignal(const QString&)), pWindow, SLOT(messageSlot(const QString&)));
+            QObject::connect(pWindow, SIGNAL(tabChangeSignal()), core, SLOT(sendNameList()));
         }
             break;
     }

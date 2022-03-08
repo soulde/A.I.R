@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Form.h"
 #include "ui_Form.h"
-#include "../addScore/Form.h"
 
 
 Form::Form(QWidget *parent) :
@@ -17,9 +16,17 @@ Form::Form(QWidget *parent) :
     for (const auto &item:User::adminGroup) {
         ui->adminGroupComboBox->addItem(QString(item.c_str()));
     }
-    for (const auto &item:User::grade) {
-        ui->adminComboBox->addItem(QString(item.c_str()));
+    time_t now = time(nullptr);
+    tm *ltm = localtime(&now);
+    int year = ltm->tm_year + 1900;
+    int month = ltm->tm_mon + 1;
+    if (month < 7) {
+        year -= 1;
     }
+    for (int i = 0; i < 6; i++) {
+        ui->gradeComboBox->addItem(QString(std::to_string(year - i).c_str()));
+    }
+
 }
 
 Form::~Form() {
@@ -27,27 +34,23 @@ Form::~Form() {
 }
 
 
-
-
 void Form::addConfirm() {
 
     std::string ID = ui->IDLineEdit->text().toStdString();
     std::string Name = ui->NameLineEdit->text().toStdString();
+    std::string School = ui->schoolComboBox->currentText().toStdString();
+    std::string Grade = ui->gradeComboBox->currentText().toStdString();
+    std::string TechGroup = ui->techGroupComboBox->currentText().toStdString();
+    std::string AdminGroup = ui->adminGroupComboBox->currentText().toStdString();
+    std::string QQ = ui->QQLineEdit->text().toStdString();
     std::string Tel = ui->TelLineEdit->text().toStdString();
-    std::string Mail = ui->mailLineEdit->text().toStdString();
-    std::string PassWord = ui->passwdLineEdit->text().toStdString();
-    std::string Sex;
-    if (ui->sexComboBox->currentIndex() == 0) {
-        Sex = "male";
-    } else {
-        Sex = "female";
-    }
+    std::string Sex = ui->sexComboBox->currentText().toStdString();
 
-    int index = ui->techGroupComboBox->currentIndex()*100 + ui->adminGroupComboBox->currentIndex()*10 + ui->adminComboBox->currentIndex();
 
     std::string insertCmd =
-            "insert into names values('" + ID + "','" + Name + "','" + PassWord + "','" + Tel + "','" + Mail + "','" +
-            Sex + "'," + std::to_string(index) + ")";
+            "insert into names (ID, Name, School, Grade, TechGroup, AdminGroup, QQ, Tel, Sex, Password) values('_" + ID + "','" +
+            Name + "','" + School + "','" + Grade + "','" + TechGroup + "','" + AdminGroup + "','" + QQ + "','" + Tel +
+            "','" + Sex + "','_')";
 
     emit addSignal(QString(insertCmd.c_str()));
     this->close();

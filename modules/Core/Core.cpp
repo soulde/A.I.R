@@ -96,7 +96,7 @@ User Core::passwdCheck(const std::string &ID, const std::string &passwd) {
         emit messageSignal(QString("请输入学号"));
         return User();
     }
-    auto pw = query.getData<std::string>(0);
+    auto pw = query.getData<std::string>(0).substr(1);
     auto name = query.getData<std::string>(1);
     if (passwd.empty()) {
         user.type = User::user;

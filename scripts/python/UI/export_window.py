@@ -1,4 +1,4 @@
-from ui_export_window import Ui_MainWindow
+from UI.ui_export_window import Ui_MainWindow
 from PyQt5.Qt import Qt, QFileDialog, QMessageBox, QApplication
 
 from FrameLessWindow import FrameLessWindow
@@ -82,6 +82,7 @@ class MainWindow(FrameLessWindow):
                 df.to_excel(
                     self.ui.pathLineEdit.text() + '/' + table_list[self.ui.tabWidget.currentIndex()] + time.strftime(
                         "%y-%m-%d", time.localtime()) + '导出.xlsx', index=False)
+                QMessageBox.warning(self, "warning", '导出成功')
             except Exception as e:
                 QMessageBox.warning(self, "warning", str(e))
 

@@ -57,6 +57,9 @@ public slots:
 
     void runApp(const QString& name);
 
+    void sendNameList();
+
+
 public:
     QWaitCondition waitCondition;
 
@@ -94,7 +97,7 @@ private:
 
     void lookUpUserInfo(const std::string &ID, char **&pData, int &rows, int &cols, double &score);
 
-    void sendNameList();
+
 
     void sendAppList();
 

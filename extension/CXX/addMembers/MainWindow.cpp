@@ -26,11 +26,15 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(collectItem(QTableWidgetItem * )));
     connect(ui->nameTableWidget, SIGNAL(itemClicked(QTableWidgetItem * )), this, SLOT(refreshClickState()));
     connect(ui->nameTableWidget, SIGNAL(itemChanged(QTableWidgetItem * )), this, SLOT(updateItem(QTableWidgetItem * )));
+
 }
 
 void MainWindow::updateTable() {
     Table table{};
-    table.getTable("select * from names", db);
+
+    table.getTable(
+            "select ID as '学号', Name as '姓名', Sex as '性别',School as '学院', Grade as '年级', TechGroup as '技术组组别', AdminGroup as '管理部组别', QQ as 'QQ号码', Tel as '手机号码', Password as '密码' from [names]",
+            db);
     char **pT;
     int rows, cols;
     table.getSrc(pT, cols, rows);
@@ -46,7 +50,7 @@ void MainWindow::updateTable() {
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            item = new QTableWidgetItem(QString(pT[(i + 1) * cols + j] + (j == 0 ? 1 : 0)));
+            item = new QTableWidgetItem(QString(pT[(i + 1) * cols + j] + ((j == 0 || j == cols - 1) ? 1 : 0)));
             ui->nameTableWidget->setItem(i, j, item);
 
         }
@@ -78,10 +82,11 @@ void MainWindow::updateItem(QTableWidgetItem *Item) {
     if (dClicked) {
         QTableWidgetItem *header = ui->nameTableWidget->horizontalHeaderItem(Item->column());
         std::string upStr =
-                "update names set " + header->text().toStdString() + "='" + Item->text().toStdString() +
-                "' where ID = '" +
+                "update names set " + nameMap.at(header->text().toStdString()) + "='" +
+                ((Item->column() == ui->nameTableWidget->columnCount() - 1) ? "_" : "") + Item->text().toStdString() +
+                "' where ID = '_" +
                 ID + "'";
-        QMessageBox::information(this, "", QString(upStr.c_str()));
+
         db.executeCmd(upStr);
     }
 }
@@ -89,7 +94,7 @@ void MainWindow::updateItem(QTableWidgetItem *Item) {
 void MainWindow::deleteSlot() {
     QTableWidgetItem *temp = ui->nameTableWidget->item(ui->nameTableWidget->currentRow(), 0);
     if (!temp->text().isEmpty()) {
-        std::string delStr = "delete from names where ID = '" + temp->text().toStdString() + "'";
+        std::string delStr = "delete from names where ID = '_" + temp->text().toStdString() + "'";
         db.executeCmd(delStr);
     }
 
