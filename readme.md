@@ -1,2 +1,2 @@
-## DVD看v的经典福克斯的房间
-
+## Project ACPS
+ACPS(**A**.I.R **C**lub **P**oint **S**ystem) is a point statistic system to A.I.R robot club of NJUST.

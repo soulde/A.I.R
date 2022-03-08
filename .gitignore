@@ -53,5 +53,5 @@ compile_commands.json
 
 # Jetbrains projects config
 .idea
-bin
+
 data
