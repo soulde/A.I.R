@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::updateTable() {
     Table table{};
 
-    table.getTable("select names.ID as '学号', Name as '姓名', sum([score record].Score) as '分数', School as '学院', Grade as '年级', TechGroup as '技术组组别', AdminGroup as '管理部组别', QQ as 'QQ号码', Tel as '手机号码' from [names] join [score record] on names.ID = [score record].ID group by names.ID order by '分数' desc", db);
+    table.getTable("select names.ID as '学号', Name as '姓名', sum([score record].Score) as '分数', School as '学院', Grade as '年级', TechGroup as '技术组组别', AdminGroup as '管理部组别', QQ as 'QQ号码', Tel as '手机号码' from [names] join [score record] on names.ID = [score record].ID group by names.ID order by sum([score record].Score) desc", db);
     char **pT;
     int rows, cols;
     table.getSrc(pT, cols, rows);

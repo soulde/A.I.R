@@ -43,17 +43,20 @@ class MainWindow(FrameLessWindow):
             QMessageBox.warning(self, 'warning', '无法导入表格： ' + str(e))
 
     def _import_member(self, df, db):
-        sql = 'insert into names (ID, Name, school, Grade,TechGroup, AdminGroup, QQ, Tel) values (?,?, ?, ?, ?, ?, ?, ?);'
+        sql = 'insert into names (ID, Name, school, Grade,TechGroup, AdminGroup, QQ, Tel, Password) values (?,?, ?, ?, ?, ?, ?, ?,?);'
         if df.columns.tolist() != ['学号', '姓名', '学院', '年级', '技术组组别', '管理部组别', 'QQ号码', '手机号码']:
             print(df.columns.tolist())
             raise Exception('表格格式错误，请使用正确模板, 按(学号, 姓名, 学院, 年级, 技术组组别, 管理部组别, QQ号码, 手机号码)排列')
 
-        old_df = db.get_data_table("select ID as '学号', Name as '姓名', School as '学院', Grade as '年级', TechGroup as '技术组组别', AdminGroup as '管理部组别', QQ as 'QQ号码', Tel as '手机号码' from names")
+        old_df = db.get_data_table("select ID as '学号', Name as '姓名', School as '学院', Grade as '年级', TechGroup as '技术组组别', AdminGroup as '管理部组别', QQ as 'QQ号码', Tel as '手机号码',Password as '密码' from names")
         df = df.fillna('')
         df.iloc[:, 0] = df.iloc[:, 0].map(lambda x: "_" + x)
+
         old_df = old_df.applymap(str)
 
+        df['密码'] = '_'
         df = pd.concat([df, old_df])
+
         df.drop_duplicates(df.columns[0], 'first', True)
         print(df)
         data = df.values.tolist()

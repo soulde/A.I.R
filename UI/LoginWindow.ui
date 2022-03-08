@@ -416,6 +416,9 @@ background-color: rgba(255, 255, 255,50%);
         <property name="text">
          <string>登录</string>
         </property>
+        <property name="shortcut">
+         <string>Return</string>
+        </property>
        </widget>
       </item>
       <item>
