@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.17)
 project(ACPS)
+
+
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
@@ -28,7 +30,7 @@ find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
 
 file(GLOB MOD_LIST ${CMAKE_CURRENT_SOURCE_DIR}/modules/*)
-include_directories()
+
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty
         ${MOD_LIST}

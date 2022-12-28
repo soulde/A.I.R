@@ -12,8 +12,6 @@
 #include "MainWindow.h"
 
 
-
-
 class Application :QObject{
     Q_OBJECT
 public:
@@ -37,8 +35,5 @@ private:
 
 
 };
-
-
-
 
 #endif //AIR_APPLICATION_H
