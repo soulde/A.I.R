@@ -1,15 +1,15 @@
 
-#include "MainWindow.h"
-#include "ui_MainWindow.h"
+#include "AddScore.h"
+#include "ui_AddScore.h"
 #include "yaml-cpp/yaml.h"
-#include "../addMembers/MainWindow.h"
+#include "AddMember.h"
 
 #include <utility>
 
 
-MainWindow::MainWindow(QWidget *parent) :
-        QMainWindow(parent),
-        ui(new Ui::MainWindow) {
+AddScore::AddScore(QWidget *parent) :
+        FrameLessWindow(parent),
+        ui(new Ui::AddScore) {
     if (QApplication::arguments().size() == 3) {
         db = DatabaseSQLite(QApplication::arguments()[2].toStdString());
         userID = QApplication::arguments()[1];
@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->rollBackPushButton, SIGNAL(clicked()), SLOT(delRecord()));
 }
 
-void MainWindow::addScoreSlot() {
+void AddScore::addScoreSlot() {
     Query q;
     QStringList list;
     q.prepareCmd("select ID from names", db);
@@ -33,7 +33,7 @@ void MainWindow::addScoreSlot() {
         auto item = q.getData<std::string>(0);
         list.push_back(QString(item.substr(1).c_str()));
     }
-    pForm = new Form();
+    pForm = new AddScoreForm();
     pForm->show();
     connect(pForm, SIGNAL(addScoreSignal(const QString &, const QString &, double)),
             SLOT(addScore(const QString &, const QString &, double)));
@@ -42,23 +42,23 @@ void MainWindow::addScoreSlot() {
 }
 
 
-MainWindow::~MainWindow() {
+AddScore::~AddScore() {
     pForm->close();
     delete ui;
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event) {
+void AddScore::mousePressEvent(QMouseEvent *event) {
     bPressFlag = true;
     beginDrag = event->pos();
     QWidget::mousePressEvent(event);
 }
 
-void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
+void AddScore::mouseReleaseEvent(QMouseEvent *event) {
     bPressFlag = false;
     QWidget::mouseReleaseEvent(event);
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+void AddScore::mouseMoveEvent(QMouseEvent *event) {
     if (bPressFlag) {
         QPoint relaPos(QCursor::pos() - beginDrag);
         move(relaPos);
@@ -67,7 +67,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
 }
 
 
-void MainWindow::addScore(const QString &ID, const QString &Des, double score) {
+void AddScore::addScore(const QString &ID, const QString &Des, double score) {
     time_t now = time(nullptr);
     tm *ltm = localtime(&now);
     std::string date =
@@ -92,7 +92,7 @@ void MainWindow::addScore(const QString &ID, const QString &Des, double score) {
     ui->nameTableWidget->setItem(row, 1, scoreItem);
 }
 
-void MainWindow::delRecord() {
+void AddScore::delRecord() {
     QTableWidgetItem *temp = ui->nameTableWidget->item(ui->nameTableWidget->currentRow(), 0);
     if (!temp->text().isEmpty()) {
         std::string delStr = "delete from [score record] where ID = '" + temp->text().toStdString() + "'";
@@ -104,7 +104,7 @@ void MainWindow::delRecord() {
 
 }
 
-int MainWindow::getIndex() {
+int AddScore::getIndex() {
     Query q;
     q.prepareCmd("select count(*) from [score record]", db);
     q.read();

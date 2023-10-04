@@ -16,7 +16,7 @@
 #include "ExtManager.h"
 #include "../User/User.h"
 
-enum WindowType {
+enum State {
     LOGIN,
     MAIN,
 };
@@ -26,7 +26,7 @@ class Core : public QObject {
 Q_OBJECT
 
 signals:
-    void alterWindowSignal(int type);
+    void switchStateSignal(int type);
 
     void userAccessSignal(const QString &ID, const QString &name, bool isAdmin);
 
@@ -67,6 +67,8 @@ public:
 
     ~Core() override;
 private:
+
+
     QMutex mutex;
 
     DatabaseSQLite db;
@@ -91,12 +93,11 @@ private:
 
     void extManagerInit();
 
-    void alternate(int windowType);
+    void switchState(State state);
 
     User passwdCheck(const std::string &ID, const std::string &passwd);
 
     void lookUpUserInfo(const std::string &ID, char **&pData, int &rows, int &cols, double &score);
-
 
 
     void sendAppList();

@@ -1,11 +1,11 @@
 #include <iostream>
-#include "Form.h"
-#include "ui_Form.h"
+#include "AddMemberForm.h"
+#include "ui_AddMemberForm.h"
 
 
-Form::Form(QWidget *parent) :
+AddMemberForm::AddMemberForm(QWidget *parent) :
         QWidget(parent),
-        ui(new Ui::Form) {
+        ui(new Ui::AddMemberForm) {
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_DeleteOnClose, true);
@@ -29,12 +29,12 @@ Form::Form(QWidget *parent) :
 
 }
 
-Form::~Form() {
+AddMemberForm::~AddMemberForm() {
     delete ui;
 }
 
 
-void Form::addConfirm() {
+void AddMemberForm::addConfirm() {
 
     std::string ID = ui->IDLineEdit->text().toStdString();
     std::string Name = ui->NameLineEdit->text().toStdString();

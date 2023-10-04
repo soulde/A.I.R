@@ -9,7 +9,7 @@
 #include "FrameLessWindow.h"
 
 namespace Ui {
-    class MainWindow;
+class MainWindow;
 }
 
 class MainWindow : public FrameLessWindow {
@@ -71,7 +71,7 @@ private slots:
 
 private:
     QString currentSelectId;
-
+    
     Ui::MainWindow *ui;
 };
 

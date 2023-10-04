@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>AddScoreForm</class>
+ <widget class="QWidget" name="AddScoreForm">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -50,8 +50,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../addmembers/res.qrc">
-         <normaloff>:/zoom.png</normaloff>:/zoom.png</iconset>
+        <iconset resource="res.qrc">
+         <normaloff>:/icons/zoom.png</normaloff>:/icons/zoom.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -92,8 +92,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../addmembers/res.qrc">
-         <normaloff>:/close.png</normaloff>:/close.png</iconset>
+        <iconset resource="res.qrc">
+         <normaloff>:/icons/close.png</normaloff>:/icons/close.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -254,13 +254,13 @@
   </layout>
  </widget>
  <resources>
-  <include location="../addmembers/res.qrc"/>
+  <include location="res.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>closeButton</sender>
    <signal>clicked()</signal>
-   <receiver>Form</receiver>
+   <receiver>AddScoreForm</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -276,7 +276,7 @@
   <connection>
    <sender>hideButton</sender>
    <signal>clicked()</signal>
-   <receiver>Form</receiver>
+   <receiver>AddScoreForm</receiver>
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">

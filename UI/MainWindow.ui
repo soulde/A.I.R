@@ -486,7 +486,7 @@ QPushButton#refreshButton:pressed{
                <string notr="true">QTableWidget{
 color:rgb(205,141,84);
 background:rgb(255,233,213);
-alternate-background-color:rgb(247,198,155);/*交错颜色*/
+switchState-background-color:rgb(247,198,155);/*交错颜色*/
 border:none;
 gridline-color:rgb(237,188,145);
 outline:0px;
@@ -632,7 +632,7 @@ QScrollBar::add-line:vertical:hover,QScrollBar::add-line:vertical:pressed{height
                <string notr="true">QTableWidget{
 color:rgb(205,141,84);
 background:rgb(255,233,213);
-alternate-background-color:rgb(247,198,155);/*交错颜色*/
+switchState-background-color:rgb(247,198,155);/*交错颜色*/
 border:none;
 gridline-color:rgb(237,188,145);
 outline:0px;

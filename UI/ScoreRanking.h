@@ -1,28 +1,30 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SCORERANKING_H
+#define SCORERANKING_H
 
-#include <QMainWindow>
+#include <FrameLessWindow.h>
 #include <QTableWidgetItem>
 #include <QMouseEvent>
 
 #include "DatabaseSQLite.h"
 
 namespace Ui {
-class MainWindow;
+    class ScoreRanking;
 }
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class ScoreRanking : public FrameLessWindow {
+Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit ScoreRanking(QWidget *parent = nullptr);
+
+    ~ScoreRanking();
 
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
+
     void mouseMoveEvent(QMouseEvent *event) override;
+
     void mouseReleaseEvent(QMouseEvent *event) override;
 
     bool bPressFlag;
@@ -30,13 +32,14 @@ protected:
     QPoint beginDrag;
 private:
     void updateTable();
-    Ui::MainWindow *ui;
 
-    QWidget* pForm = nullptr;
+    Ui::ScoreRanking *ui;
+
+    QWidget *pForm = nullptr;
 
     DatabaseSQLite db;
 
 };
 
 
-#endif // MAINWINDOW_H
+#endif // SCORERANKING_H

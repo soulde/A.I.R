@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'export_window.ui'
+# Form implementation generated from reading ui file 'ExportWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #

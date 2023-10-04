@@ -1,14 +1,14 @@
-#ifndef FORM_H
-#define FORM_H
+#ifndef ADDSCOREFORM_H
+#define ADDSCOREFORM_H
 
 #include <QWidget>
 #include <QtWidgets>
 
 namespace Ui {
-    class Form;
+    class AddScoreForm;
 }
 
-class Form : public QWidget {
+class AddScoreForm : public QWidget {
 Q_OBJECT
 signals:
 
@@ -16,9 +16,9 @@ signals:
 
 
 public:
-     explicit Form(QWidget *parent = nullptr);
+     explicit AddScoreForm(QWidget *parent = nullptr);
 
-    ~Form();
+    ~AddScoreForm();
 
 public slots:
 
@@ -27,7 +27,7 @@ public slots:
     void setComplete(const QStringList& list);
 
 private:
-    Ui::Form *ui;
+    Ui::AddScoreForm *ui;
 };
 
-#endif // FORM_H
+#endif // ADDSCOREFORM_H

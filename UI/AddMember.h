@@ -1,23 +1,23 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef ADDMEMBER_H
+#define ADDMEMBER_H
 
-#include <QMainWindow>
+#include <FrameLessWindow.h>
 #include <QTableWidgetItem>
 #include <QMouseEvent>
-#include "Form.h"
+#include "AddMemberForm.h"
 #include "DatabaseSQLite.h"
 
 namespace Ui {
-    class MainWindow;
+    class AddMember;
 }
 
-class MainWindow : public QMainWindow {
+class AddMember : public FrameLessWindow {
 Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit AddMember(QWidget *parent = nullptr);
 
-    ~MainWindow();
+    ~AddMember();
 
 
 protected:
@@ -31,7 +31,7 @@ protected:
 
     QPoint beginDrag;
 private:
-    Ui::MainWindow *ui;
+    Ui::AddMember *ui;
 
     QWidget *pForm = nullptr;
 
@@ -71,4 +71,4 @@ private:
 };
 
 
-#endif // MAINWINDOW_H
+#endif // ADDMEMBER_H

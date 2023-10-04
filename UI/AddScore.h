@@ -1,24 +1,24 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef ADDSCORE_H
+#define ADDSCORE_H
 
-#include <QMainWindow>
+#include <FrameLessWindow.h>
 #include <QTableWidgetItem>
 #include <QMouseEvent>
 #include <QMessageBox>
 #include "DatabaseSQLite.h"
-#include "Form.h"
+#include "AddScoreForm.h"
 
 namespace Ui {
-class MainWindow;
+class AddScore;
 }
 
-class MainWindow : public QMainWindow
+class AddScore : public FrameLessWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit AddScore(QWidget *parent = nullptr);
+    ~AddScore();
 signals:
     void listSignal(const QStringList&);
 
@@ -31,7 +31,7 @@ protected:
 
     QPoint beginDrag;
 private:
-    Ui::MainWindow *ui;
+    Ui::AddScore *ui;
 
     QWidget* pForm = nullptr;
 
@@ -51,4 +51,4 @@ private slots:
 
 };
 
-#endif // MAINWINDOW_H
+#endif // ADDSCORE_H

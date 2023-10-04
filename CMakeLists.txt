@@ -3,13 +3,13 @@ project(ACPS)
 
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 set(QT_VERSION 5)
-set(CMAKE_PREFIX_PATH E:/QT/5.15.2/mingw81_64)
+set(CMAKE_PREFIX_PATH D:/QT/5.15.2/mingw81_64)
 set(REQUIRED_LIBS Core Gui Widgets)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 
@@ -18,9 +18,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 
 if (CMAKE_BUILD_TYPE STREQUAL Release)
-
     ADD_DEFINITIONS(-DNDEBUG)
-
 endif ()
 
 link_directories(
@@ -46,13 +44,13 @@ endforeach (MOD)
 #TODO:SDK Develop
 #add_subdirectory(SDK/CXX/extension)
 
-file(GLOB EXT_LIST ${CMAKE_CURRENT_SOURCE_DIR}/extension/CXX/*)
+#file(GLOB EXT_LIST ${CMAKE_CURRENT_SOURCE_DIR}/extension/CXX/*)
 
-foreach (EXT ${EXT_LIST})
-    message(${EXT})
-    add_subdirectory(${EXT})
+#foreach (EXT ${EXT_LIST})
+#    message(${EXT})
+#    add_subdirectory(${EXT})
 
-endforeach ()
+#endforeach ()
 
 file(GLOB UI_LIST ${CMAKE_CURRENT_SOURCE_DIR}/UI/*.*)
 #
@@ -66,10 +64,13 @@ add_executable(${PROJECT_NAME} WIN32
         app/Main/Application.h
         app/Main/Application.cpp
         ${UI_LIST}
+        UI/AddMember.cpp UI/AddMemberForm.cpp
         )
 
-add_executable(initEnv WIN32 app/init.cpp)
-target_link_libraries(initEnv Database yaml-cpp sqlite3)
+#add_executable(initEnv WIN32 app/init.cpp)
+#target_link_libraries(initEnv Database yaml-cpp sqlite3)
+
+add_subdirectory(SDK)
 
 if (WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND}

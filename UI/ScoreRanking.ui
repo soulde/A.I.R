@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ScoreRanking</class>
+ <widget class="QMainWindow" name="ScoreRanking">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -48,7 +48,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../addMembers/res.qrc">
+         <iconset>
           <normaloff>:/zoom.png</normaloff>:/zoom.png</iconset>
         </property>
         <property name="iconSize">
@@ -90,7 +90,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../addMembers/res.qrc">
+         <iconset>
           <normaloff>:/close.png</normaloff>:/close.png</iconset>
         </property>
         <property name="iconSize">
@@ -148,7 +148,7 @@
          </font>
         </property>
         <property name="text">
-         <string>积分管理</string>
+         <string>积分表</string>
         </property>
        </widget>
       </item>
@@ -195,10 +195,10 @@
        <enum>QAbstractItemView::SelectRows</enum>
       </property>
       <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>200</number>
@@ -209,74 +209,18 @@
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <column>
-       <property name="text">
-        <string>学号</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>加分</string>
-       </property>
-      </column>
      </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="3,1,1">
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="addPushButton">
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>加分</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="rollBackPushButton">
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>撤销</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="../addMembers/res.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>closeButton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>ScoreRanking</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -292,7 +236,7 @@
   <connection>
    <sender>hideButton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>ScoreRanking</receiver>
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">

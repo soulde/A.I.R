@@ -1,15 +1,15 @@
 
-#include "MainWindow.h"
-#include "ui_MainWindow.h"
+#include "AddMember.h"
+#include "ui_AddMember.h"
 #include "yaml-cpp/yaml.h"
 
-std::string MainWindow::ID = "";
-bool MainWindow::dClicked = false;
+std::string AddMember::ID = "";
+bool AddMember::dClicked = false;
 
 
-MainWindow::MainWindow(QWidget *parent) :
-        QMainWindow(parent),
-        ui(new Ui::MainWindow) {
+AddMember::AddMember(QWidget *parent) :
+        FrameLessWindow(parent),
+        ui(new Ui::AddMember) {
     if (QApplication::arguments().size() == 3) {
         db = DatabaseSQLite(QApplication::arguments()[2].toStdString());
     } else {
@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-void MainWindow::updateTable() {
+void AddMember::updateTable() {
     Table table{};
 
     table.getTable(
@@ -57,28 +57,28 @@ void MainWindow::updateTable() {
     }
 }
 
-void MainWindow::addItemSlot() {
-    pForm = new Form();
+void AddMember::addItemSlot() {
+    pForm = new AddMemberForm();
     connect(pForm, SIGNAL(addSignal(const QString&)), this, SLOT(insertSlot(const QString&)));
     pForm->show();
 }
 
-void MainWindow::insertSlot(const QString &cmd) {
+void AddMember::insertSlot(const QString &cmd) {
     db.executeCmd(cmd.toStdString());
     updateTable();
 }
 
-void MainWindow::collectItem(QTableWidgetItem *Item) {
+void AddMember::collectItem(QTableWidgetItem *Item) {
     QTableWidgetItem *temp = ui->nameTableWidget->item(Item->row(), 0);
     ID = temp->text().toStdString();
     dClicked = true;
 }
 
-void MainWindow::refreshClickState() {
+void AddMember::refreshClickState() {
     dClicked = false;
 }
 
-void MainWindow::updateItem(QTableWidgetItem *Item) {
+void AddMember::updateItem(QTableWidgetItem *Item) {
     if (dClicked) {
         QTableWidgetItem *header = ui->nameTableWidget->horizontalHeaderItem(Item->column());
         std::string upStr =
@@ -91,7 +91,7 @@ void MainWindow::updateItem(QTableWidgetItem *Item) {
     }
 }
 
-void MainWindow::deleteSlot() {
+void AddMember::deleteSlot() {
     QTableWidgetItem *temp = ui->nameTableWidget->item(ui->nameTableWidget->currentRow(), 0);
     if (!temp->text().isEmpty()) {
         std::string delStr = "delete from names where ID = '_" + temp->text().toStdString() + "'";
@@ -101,23 +101,23 @@ void MainWindow::deleteSlot() {
     updateTable();
 }
 
-MainWindow::~MainWindow() {
+AddMember::~AddMember() {
 
     delete ui;
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event) {
+void AddMember::mousePressEvent(QMouseEvent *event) {
     bPressFlag = true;
     beginDrag = event->pos();
     QWidget::mousePressEvent(event);
 }
 
-void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
+void AddMember::mouseReleaseEvent(QMouseEvent *event) {
     bPressFlag = false;
     QWidget::mouseReleaseEvent(event);
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+void AddMember::mouseMoveEvent(QMouseEvent *event) {
     if (bPressFlag) {
         QPoint relaPos(QCursor::pos() - beginDrag);
         move(relaPos);

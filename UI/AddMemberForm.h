@@ -6,24 +6,24 @@
 #include "User.h"
 
 namespace Ui {
-    class Form;
+    class AddMemberForm;
 }
 
-class Form : public QWidget {
+class AddMemberForm : public QWidget {
 Q_OBJECT
 
 signals:
     void addSignal(const QString& str);
 public:
-    explicit Form(QWidget *parent = nullptr);
+    explicit AddMemberForm(QWidget *parent = nullptr);
 
-    ~Form();
+    ~AddMemberForm();
 
 private slots:
     void addConfirm();
 
 private:
-    Ui::Form *ui;
+    Ui::AddMemberForm *ui;
 
 };
 

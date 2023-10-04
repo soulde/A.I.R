@@ -61,39 +61,36 @@ public:
 
     void finish();
 
-    template<typename T, std::enable_if_t<std::is_same<T, std::string>::value> * = nullptr>
+    template<typename T>
     void bind(T value, int index) {
-        sqlite3_bind_text(pStmt, index, value.c_str(), value.size(), nullptr);
-    }
-
-    template<typename T, std::enable_if_t<std::is_same<T, int>::value> * = nullptr>
-    void bind(T value, int index) {
-        sqlite3_bind_int(pStmt, index, value);
-    }
-
-    template<typename T, std::enable_if_t<std::is_same<T, double>::value> * = nullptr>
-    void bind(T value, int index) {
-        sqlite3_bind_double(pStmt, index, value);
-    }
-
-    template<typename T, std::enable_if_t<std::is_same<T, std::string>::value> * = nullptr>
-    T getData(int index) {
-        try {
-            return std::string((char *) sqlite3_column_text(pStmt, index));
-        } catch (const std::logic_error &e) {
-            return std::string("");
+        if constexpr (std::is_same<T, int>()) {
+            sqlite3_bind_int(pStmt, index, value);
+        }
+        if constexpr (std::is_same<T, std::string>()) {
+            sqlite3_bind_text(pStmt, index, value.c_str(), value.size(), nullptr);
+        }
+        if constexpr (std::is_same<T, double>()) {
+            sqlite3_bind_double(pStmt, index, value);
         }
     }
 
-    template<typename T, std::enable_if_t<std::is_same<T, int>::value> * = nullptr>
+    template<typename T>
     T getData(int index) {
-        return sqlite3_column_int(pStmt, index);
+        if constexpr (std::is_same<T, std::string>()) {
+            try {
+                return std::string((char *) sqlite3_column_text(pStmt, index));
+            } catch (const std::logic_error &e) {
+                return std::string("");
+            }
+        }
+        if constexpr (std::is_same<T, int>()) {
+            return sqlite3_column_int(pStmt, index);
+        }
+        if constexpr (std::is_same<T, double>()) {
+            return sqlite3_column_double(pStmt, index);
+        }
     }
 
-    template<typename T, std::enable_if_t<std::is_same<T, double>::value> * = nullptr>
-    T getData(int index) {
-        return sqlite3_column_double(pStmt, index);
-    }
 
 private:
     sqlite3_stmt *pStmt{};

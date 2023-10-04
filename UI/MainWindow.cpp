@@ -4,7 +4,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
         FrameLessWindow(parent),
-        ui(new Ui::MainWindow) {
+    ui(new Ui::MainWindow) {
     ui->setupUi(this);
     connect(ui->enlargeButton, SIGNAL(clicked()), SLOT(zoomInAndOut()));
     connect(ui->rollbackButton, SIGNAL(clicked()), SLOT(sendRollbackSignal()));

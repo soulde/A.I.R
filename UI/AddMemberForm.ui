@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>AddMemberForm</class>
+ <widget class="QWidget" name="AddMemberForm">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -81,7 +81,7 @@ QLabel{
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/zoom.png</normaloff>:/zoom.png</iconset>
        </property>
        <property name="iconSize">
@@ -128,7 +128,7 @@ QLabel{
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/close.png</normaloff>:/close.png</iconset>
        </property>
        <property name="iconSize">
@@ -178,6 +178,7 @@ QLabel{
       <widget class="QLabel" name="label_2">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -192,6 +193,7 @@ QLabel{
       <widget class="QLineEdit" name="IDLineEdit">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -206,6 +208,7 @@ QLabel{
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -220,6 +223,7 @@ QLabel{
       <widget class="QLineEdit" name="NameLineEdit">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -231,6 +235,7 @@ QLabel{
       <widget class="QLabel" name="label_5">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -280,6 +285,7 @@ QLabel{
       <widget class="QLabel" name="label_7">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -473,6 +479,7 @@ QLabel{
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -487,6 +494,7 @@ QLabel{
       <widget class="QLineEdit" name="QQLineEdit">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -501,6 +509,7 @@ QLabel{
       <widget class="QLabel" name="label_6">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -515,6 +524,7 @@ QLabel{
       <widget class="QLineEdit" name="TelLineEdit">
        <property name="font">
         <font>
+         <family>Microsoft YaHei UI</family>
          <pointsize>18</pointsize>
          <italic>false</italic>
          <bold>false</bold>
@@ -564,14 +574,12 @@ QLabel{
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>closeButton</sender>
    <signal>clicked()</signal>
-   <receiver>Form</receiver>
+   <receiver>AddMemberForm</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -587,7 +595,7 @@ QLabel{
   <connection>
    <sender>hideButton</sender>
    <signal>clicked()</signal>
-   <receiver>Form</receiver>
+   <receiver>AddMemberForm</receiver>
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">

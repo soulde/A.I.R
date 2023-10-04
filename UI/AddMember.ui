@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>AddMember</class>
+ <widget class="QMainWindow" name="AddMember">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -48,8 +48,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../addMembers/res.qrc">
-          <normaloff>:/zoom.png</normaloff>:/zoom.png</iconset>
+         <iconset resource="res.qrc">
+          <normaloff>:/icons/zoom.png</normaloff>:/icons/zoom.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -90,8 +90,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../addMembers/res.qrc">
-          <normaloff>:/close.png</normaloff>:/close.png</iconset>
+         <iconset resource="res.qrc">
+          <normaloff>:/icons/close.png</normaloff>:/icons/close.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -148,7 +148,7 @@
          </font>
         </property>
         <property name="text">
-         <string>积分表</string>
+         <string>成员管理</string>
         </property>
        </widget>
       </item>
@@ -183,7 +183,7 @@
 }</string>
       </property>
       <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
+       <set>QAbstractItemView::DoubleClicked</set>
       </property>
       <property name="dragDropOverwriteMode">
        <bool>false</bool>
@@ -195,34 +195,69 @@
        <enum>QAbstractItemView::SelectRows</enum>
       </property>
       <property name="sortingEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
-      <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>200</number>
-      </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>true</bool>
-      </attribute>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
      </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="3,1,1">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="addPushButton">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>添加</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="delPushButton">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>删除</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../addMembers/res.qrc"/>
+  <include location="res.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>closeButton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>AddMember</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -238,7 +273,7 @@
   <connection>
    <sender>hideButton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>AddMember</receiver>
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">

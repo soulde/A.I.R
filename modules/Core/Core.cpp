@@ -21,7 +21,7 @@ void Core::login(const QString &ID, const QString &passwd) {
     if (user.ID.empty()) {
         return;
     }
-    alternate(MAIN);
+    switchState(MAIN);
 
     refresh(ID);
     emit userAccessSignal(ID, QString(user.name.c_str()), user.type);
@@ -34,7 +34,7 @@ void Core::login(const QString &ID, const QString &passwd) {
 }
 
 void Core::resetLogin() {
-    alternate(LOGIN);
+    switchState(LOGIN);
 }
 
 void Core::refresh(const QString &ID) {
@@ -47,9 +47,9 @@ void Core::refresh(const QString &ID) {
 
 }
 
-void Core::alternate(int windowType) {
+void Core::switchState(State state) {
     mutex.lock();
-    emit alterWindowSignal(windowType);
+    emit switchStateSignal(state);
     waitCondition.wait(&mutex);
     mutex.unlock();
 }
